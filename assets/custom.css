@@ -1,9 +1,10 @@
-@media (min-width: 576px) {
+@media (min-width: 300px) {
 .w-48 {
   width: 100% !important;
 }
 .card-img-apple {
 width:35% !important;
+margin-top: 5px;
 }
 }
 
