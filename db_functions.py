@@ -50,6 +50,7 @@ def build_search():
         df["label"] = df['label'].astype(str) + " (Latin: " + df["latin_name"].astype(str) + ")"
         df.drop(labels="latin_name", axis="columns", inplace=True)
         df.set_index("value")
+        df.sort_values(by=["label"], inplace=True)
         search_dict = df.to_dict("records")
         return search_dict
     except sqlite3.Error as err:
