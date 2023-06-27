@@ -8,6 +8,7 @@ import db_functions as db
 from dash.exceptions import PreventUpdate
 
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP, dbc.icons.BOOTSTRAP], )
+server = app.server
 
 """
 Identify Apple Module
@@ -20,10 +21,15 @@ section_intro = dbc.Card(
             [
                 html.H4("Er du i tvivl om bestøvning af æbletræer?", className="card-title"),
                 html.P(
-                    "Hvis du har et æbletræ i haven, skal det bestøves for at der kommer æbler. Det er ikke altid "
-                    "lige til at finde ud af hvilke sorter af æbletræer som kan bestøve andre sorter, men det kan du "
-                    "heldigvis få hjælp til her. Spørg altid din lokale planteskole eller havecenter til råds, "
-                    "hvis du har brug for hjælp.",
+                    [
+                        "Hvis du har et æbletræ i haven, skal det bestøves for at der kommer æbler. Det er ikke altid "
+                        "lige til at finde ud af hvilke sorter af æbletræer som kan bestøve andre sorter, men det kan du "
+                        "heldigvis få hjælp til her. ",
+                        html.Br(),
+                        html.Br(),
+                        "Information er samlet fra forskellige kilder, spørg altid din lokale planteskole eller "
+                        "havecenter til råds, for at være sikker.",
+                    ],
                     className="card-text",
                 ),
             ]
@@ -44,7 +50,7 @@ section_search = dbc.Card(
                 dcc.Dropdown(id="input_Search", placeholder="Søg efter æble...", value="string", clearable=True),
                 html.Div(id="section_info", className="my-2")
             ],
-            ),
+        ),
     ],
 )
 
@@ -65,6 +71,29 @@ section_pollination = dbc.Card(
     style={"display": "None"}, id="section_pollination"
 )
 
+section_credits = dbc.Card(
+    [
+        dbc.CardBody(
+            [
+                html.H4("Henvisninger", className="card-title"),
+                html.P(
+                    [
+                        "Information og billeder på siden er hentet fra forskellige kilder. Materiale under "
+                        "beskyttelse er nævnt herunder indenfor rammerne af beskyttelsen:",
+                        html.Br(),
+                    ]),
+                html.H6(
+                    [
+                        "Materiale under ",
+                        html.A("Open Government License License 3",
+                               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+                               target="_blank"),
+                    ],
+                ),
+            ],
+            className="card-text"),
+    ],
+),
 """
 DASH Layout
 """
@@ -87,6 +116,11 @@ app.layout = dbc.Container(
         dbc.Row(
             [
                 dbc.Col(section_pollination, md=layout_md, sm=layout_sm),
+            ],
+            className="mb-3", justify="center"),
+        dbc.Row(
+            [
+                dbc.Col(section_credits, md=layout_md, sm=layout_sm),
             ],
             className="mb-3", justify="center"),
     ],

@@ -45,27 +45,42 @@ def build_card_small(row):
                 dbc.Row(
                     [
                         dbc.Col(
-                            dbc.CardImg(
-                                src=("assets/img/" + row["img"] + ".jpg"),
-                                className="img-fluid rounded-start",
+                            html.Div(
+                                html.Img(src="assets/img/" + row["img"] + ".jpg",
+                                         className="card-img-apple rounded-circle"),
+                                className="d-flex justify-content-center"
                             ),
-                            md=3, sm=3
+                            align="center", md=3, sm=3
                         ),
                         dbc.Col(
                             dbc.CardBody(
                                 [
                                     html.H4(row["name"], className="card-title"),
+
                                     # html.Small(row["latin_name"]),
-                                    # html.P(
-                                    #     row["description"],
-                                    #     className="card-text",
-                                    # ),
+                                    html.P(
+                                        row["description_short"],
+                                        className="card-text",
+                                    ),
+                                ],
+                            ),
+                            md=9, sm=12
+                        ),
+                    ],
+                    className="g-0 d-flex",
+                    align="start",
+                ),
+                dbc.Row(
+                    dbc.Col(
+                        [
+                            html.Div(
+                                [
                                     dbc.Button(
                                         [
                                             html.I(className="bi bi-cart me-2"),
                                             row["seller1"],
                                         ], color="success", className="m-1", size="sm",
-                                               href=row["seller1_link"], target="_blank"),
+                                        href=row["seller1_link"], target="_blank"),
                                     dbc.Button(
                                         [
                                             html.I(className="bi bi-cart me-2"),
@@ -73,15 +88,13 @@ def build_card_small(row):
                                         ], color="success", className="m-1", size="sm",
                                         href=row["seller2_link"], target="_blank"),
                                 ],
+                                className="d-flex justify-content-center mt-1"
                             ),
-                            md=9, sm=9
-                        ),
-                    ],
-                    className="g-0 d-flex",
-                    align="start",
-                )
+                        ],
+                        className="mx-auto", sm=12),
+                    align="center", justify="center"),
             ],
-            className="w-48 m-1",
+            className="w-48 m-1 p-1",
         )
     elif row["seller1"] is not None:
         return dbc.Card(
@@ -89,37 +102,50 @@ def build_card_small(row):
                 dbc.Row(
                     [
                         dbc.Col(
-                            dbc.CardImg(
-                                src=("assets/img/" + row["img"] + ".jpg"),
-                                className="img-fluid rounded-start",
+                            html.Div(
+                                html.Img(src="assets/img/" + row["img"] + ".jpg",
+                                         className="card-img-apple rounded-circle"),
+                                className="d-flex justify-content-center"
                             ),
-                            md=3, sm=3
+                            align="center", md=3, sm=3
                         ),
                         dbc.Col(
                             dbc.CardBody(
                                 [
                                     html.H4(row["name"], className="card-title"),
+
                                     # html.Small(row["latin_name"]),
-                                    # html.P(
-                                    #     row["description"],
-                                    #     className="card-text",
-                                    # ),
+                                    html.P(
+                                        row["description_short"],
+                                        className="card-text",
+                                    ),
+                                ],
+                            ),
+                            md=9, sm=12
+                        ),
+                    ],
+                    className="g-0 d-flex",
+                    align="start",
+                ),
+                dbc.Row(
+                    dbc.Col(
+                        [
+                            html.Div(
+                                [
                                     dbc.Button(
                                         [
                                             html.I(className="bi bi-cart me-2"),
                                             row["seller1"],
                                         ], color="success", className="m-1", size="sm",
-                                               href=row["seller1_link"], target="_blank"),
+                                        href=row["seller1_link"], target="_blank"),
                                 ],
+                                className="d-flex justify-content-center mt-1"
                             ),
-                            md=9, sm=9
-                        ),
-                    ],
-                    className="g-0 d-flex",
-                    align="start",
-                )
+                        ],
+                        className="mx-auto", sm=12),
+                    align="center", justify="center"),
             ],
-            className="w-48 m-1",
+            className="w-48 m-1 p-1",
         )
     else:
         return dbc.Card(
@@ -127,31 +153,33 @@ def build_card_small(row):
                 dbc.Row(
                     [
                         dbc.Col(
-                            dbc.CardImg(
-                                src=("assets/img/" + row["img"] + ".jpg"),
-                                className="img-fluid rounded-start",
+                            html.Div(
+                                html.Img(src="assets/img/" + row["img"] + ".jpg",
+                                         className="card-img-apple rounded-circle"),
+                                className="d-flex justify-content-center"
                             ),
-                            md=3, sm=3
+                            align="center", md=3, sm=3
                         ),
                         dbc.Col(
                             dbc.CardBody(
                                 [
                                     html.H4(row["name"], className="card-title"),
+
                                     # html.Small(row["latin_name"]),
-                                    # html.P(
-                                    #     row["description"],
-                                    #     className="card-text",
-                                    # ),
+                                    html.P(
+                                        row["description_short"],
+                                        className="card-text",
+                                    ),
                                 ],
                             ),
-                            md=9, sm=9
+                            md=9, sm=12
                         ),
                     ],
                     className="g-0 d-flex",
                     align="start",
-                )
+                ),
             ],
-            className="w-48 m-1",
+            className="w-48 m-1 p-1",
         )
 
 
@@ -171,6 +199,5 @@ def build_pollination_cards(target_apple_name, id):
     list_cards = [html.H4(f"Æblesorter der kan bestøve {target_apple_name}", className="w-100 card-title")]
     apples = db.get_apples(id)
     for index, row in apples.iterrows():
-        print(index, row)
         list_cards.append((build_card_small(row)))
     return list_cards

@@ -1,3 +1,28 @@
+@media (min-width: 576px) {
+.w-48 {
+  width: 100% !important;
+}
+.card-img-apple {
+width:35% !important;
+}
+}
+
+@media (min-width: 768px) {
 .w-48 {
   width: 48% !important;
 }
+.card-img-apple {
+width:90% !important;
+}
+}
+
+body {
+background: #A0C49D;
+}
+
+.card {
+background-color: #F7FFE5;
+}
+
+.Select, .Select div, .Select input, .Select span {
+background-color: #E1ECC8}
