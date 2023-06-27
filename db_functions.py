@@ -1,12 +1,17 @@
 import sqlite3
 import pandas as pd
 from sqlite3 import Error
+import os
+
 
 
 def connect_db():
     connection = None
+    script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
+    rel_path = "db.db"
+    abs_file_path = os.path.join(script_dir, rel_path)
     try:
-        connection = sqlite3.connect("D:\GitHub\Repos/aeblesort\db.db", check_same_thread=False)
+        connection = sqlite3.connect(abs_file_path, check_same_thread=False)
     except sqlite3.Error as err:
         print(f"The error '{err}' occurred during 'connection to database' in connect_sqlite3")
     return connection
