@@ -78,9 +78,12 @@ section_credits = dbc.Card(
                 html.H4("Henvisninger", className="card-title"),
                 html.P(
                     [
-                        "Information og billeder på siden er hentet fra forskellige kilder. Materiale under "
-                        "beskyttelse er nævnt herunder indenfor rammerne af beskyttelsen:",
-                        html.Br(),
+                        "Information og billeder på siden er hentet fra forskellige kilder. Information om æbler og "
+                        "træer kommer hovedsagelidt fra  ",
+                        html.A("Pometets æblenøgle",
+                               href="http://aeblenoeglen.science.ku.dk/",
+                               target="_blank"),
+                        " som er et fantastisk redskab selv at gå på opdagelse i ved spørgsmål om æbletræer og æbler."
                     ]),
                 html.H6(
                     [
