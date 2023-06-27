@@ -179,4 +179,4 @@ def update_poliapples(target_apple_id):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
