@@ -218,7 +218,6 @@ def build_pollination_cards(target_apple_name, id):
     apples = db.get_apples(id)
     for index, row in apples.iterrows():
         list_cards.append((build_card_small(row)))
-    print(list_cards)
     return list_cards
 
 

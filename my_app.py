@@ -28,7 +28,7 @@ section_intro = dbc.Card(
                         html.Br(),
                         html.Br(),
                         "Information er samlet fra forskellige kilder, spørg altid din lokale planteskole eller "
-                        "havecenter til råds, for at være sikker.",
+                        "havecenter til råds.",
                     ],
                     className="card-text",
                 ),
@@ -226,4 +226,4 @@ def toggle_collapse(n, is_open):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=True)
+    app.run_server(debug=False)
