@@ -4,7 +4,6 @@ from sqlite3 import Error
 import os
 
 
-
 def connect_db():
     connection = None
     script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
@@ -24,6 +23,7 @@ def get_apple(id):
     conn.close()
     return result
 
+
 def get_apples(id):
     conn = connect_db()
     cur = conn.cursor()
@@ -35,6 +35,15 @@ def get_apples(id):
     conn.close()
     return result
 
+
+def get_credits():
+    conn = connect_db()
+    sql = f"SELECT credits.apple_id, credits.comment, credits.source_name, credits.source_link, credits.license_name, credits.license_link, apples.name FROM credits INNER JOIN apples ON apples.id = credits.apple_id"
+    result = pd.read_sql_query(sql, conn)
+    conn.close()
+    return result
+
+
 """
 Populate Dropdown Menu (Species)
 """
@@ -43,12 +52,10 @@ Populate Dropdown Menu (Species)
 def build_search():
     try:
         conn = connect_db()
-        sql = f"SELECT id, name, latin_name FROM apples"
+        sql = f"SELECT id, name FROM apples"
         df = pd.read_sql_query(sql, conn)
         conn.close()
         df = df.rename(columns={"id": "value", "name": "label"})
-        df["label"] = df['label'].astype(str) + " (Latin: " + df["latin_name"].astype(str) + ")"
-        df.drop(labels="latin_name", axis="columns", inplace=True)
         df.set_index("value")
         df.sort_values(by=["label"], inplace=True)
         search_dict = df.to_dict("records")

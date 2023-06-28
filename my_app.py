@@ -98,17 +98,9 @@ section_credits = dbc.Card(
                                target="_blank"),
                         " som er et fantastisk redskab selv at gå på opdagelse i ved spørgsmål om æbletræer og æbler."
                     ]),
-                html.P(
-                    [
-                        # "Materiale under ",
-                        # html.A("Open Government License License 3",
-                        #        href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
-                        #        target="_blank"),
-                        # ":"
-                    ],
-                ),
+                html.Div(id="gen_credits")
             ],
-            className="card-text"),
+            className="card-text")
     ],
 ),
 """
@@ -140,6 +132,10 @@ app.layout = dbc.Container(
                 dbc.Col(section_credits, md=layout_md, sm=layout_sm),
             ],
             className="mb-3", justify="center"),
+        dcc.Input(
+            id="dummy_input",
+            style={"display": "None"},
+        )
     ],
 )
 
@@ -195,5 +191,19 @@ def update_poliapples(target_apple_id):
     return pollination_cards, {"display": "block"}
 
 
+"""
+Credits
+"""
+
+
+@app.callback(
+    Output("gen_credits", "children"),
+    Input("dummy_input", "value")
+)
+def insert_credits(dummy_value):
+    credit_list = ob.build_credits()
+    return credit_list
+
+
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)

@@ -4,7 +4,7 @@ import dash_bootstrap_components as dbc
 import pandas as pd
 
 
-def build_card(img, name, latin_name, description):
+def build_card(img, name, description):
     return dbc.Card(
         [
             dbc.Row(
@@ -21,7 +21,6 @@ def build_card(img, name, latin_name, description):
                         dbc.CardBody(
                             [
                                 html.H4(name, className="card-title"),
-                                html.Small(latin_name),
                                 html.P(
                                     description,
                                     className="card-text",
@@ -57,8 +56,6 @@ def build_card_small(row):
                             dbc.CardBody(
                                 [
                                     html.H4(row["name"], className="card-title"),
-
-                                    # html.Small(row["latin_name"]),
                                     html.P(
                                         row["description_short"],
                                         className="card-text",
@@ -114,8 +111,6 @@ def build_card_small(row):
                             dbc.CardBody(
                                 [
                                     html.H4(row["name"], className="card-title"),
-
-                                    # html.Small(row["latin_name"]),
                                     html.P(
                                         row["description_short"],
                                         className="card-text",
@@ -165,8 +160,6 @@ def build_card_small(row):
                             dbc.CardBody(
                                 [
                                     html.H4(row["name"], className="card-title"),
-
-                                    # html.Small(row["latin_name"]),
                                     html.P(
                                         row["description_short"],
                                         className="card-text",
@@ -183,12 +176,29 @@ def build_card_small(row):
             className="w-48 m-1 p-1",
         )
 
+def build_credit(row):
+    return html.Small(
+        [
+            row["name"],
+            ": ",
+            html.A(row["source_name"],
+                   href=row["source_link"],
+                   target="_blank"),
+            " (Licens: ",
+            html.A(row["license_name"],
+                   href=row["license_link"],
+                   target="_blank"),
+            ") ",
+            row["comment"],
+            html.Br()
+        ])
+
 
 def target_apple_card(id):
     # Single apple_card
     apple = db.get_apple(id)
     for index, row in apple.iterrows():
-        return (build_card(row["img"], row["name"], row["latin_name"], row["description"]))
+        return (build_card(row["img"], row["name"], row["description"]))
 
 
 def getTargetAppleName(id):
@@ -208,4 +218,17 @@ def build_pollination_cards(target_apple_name, id):
     apples = db.get_apples(id)
     for index, row in apples.iterrows():
         list_cards.append((build_card_small(row)))
+    print(list_cards)
     return list_cards
+
+
+def build_credits():
+    headline = html.H4(f"Anerkendelser"
+                       , className="w-100 card-title")
+    description = html.P("Tak til følgende for brug af billeder:"
+                         , className="w-100 card-text")
+    list_credit = [headline, description]
+    df_credits = db.get_credits()
+    for index, row in df_credits.iterrows():
+        list_credit.append((build_credit(row)))
+    return list_credit
