@@ -223,11 +223,9 @@ def build_pollination_cards(target_apple_name, id):
 
 
 def build_credits():
-    headline = html.H4(f"Anerkendelser"
-                       , className="w-100 card-title")
     description = html.P("Tak til følgende for brug af billeder:"
                          , className="w-100 card-text")
-    list_credit = [headline, description]
+    list_credit = [description]
     df_credits = db.get_credits()
     for index, row in df_credits.iterrows():
         list_credit.append((build_credit(row)))

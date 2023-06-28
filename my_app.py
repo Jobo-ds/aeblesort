@@ -98,7 +98,17 @@ section_credits = dbc.Card(
                                target="_blank"),
                         " som er et fantastisk redskab selv at gå på opdagelse i ved spørgsmål om æbletræer og æbler."
                     ]),
-                html.Div(id="gen_credits")
+                html.Div([
+                    html.H4(f"Anerkendelser", className="card-title", style={"margin-right": "5px"}),
+                    html.A(html.I(className="bi bi-caret-down-square-fill"), id="collapse-button",
+                           style={"margin-top": "3px", "cursor": "pointer"})
+                ], className="d-flex align-items-top"),
+                dbc.Collapse(
+                    html.Div(id="gen_credits"),
+                    id="collapse",
+                    is_open=False,
+                ),
+
             ],
             className="card-text")
     ],
@@ -203,6 +213,16 @@ Credits
 def insert_credits(dummy_value):
     credit_list = ob.build_credits()
     return credit_list
+
+@app.callback(
+    Output("collapse", "is_open"),
+    [Input("collapse-button", "n_clicks")],
+    [State("collapse", "is_open")],
+)
+def toggle_collapse(n, is_open):
+    if n:
+        return not is_open
+    return is_open
 
 
 if __name__ == '__main__':
