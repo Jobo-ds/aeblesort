@@ -98,12 +98,13 @@ section_credits = dbc.Card(
                                target="_blank"),
                         " som er et fantastisk redskab selv at gå på opdagelse i ved spørgsmål om æbletræer og æbler."
                     ]),
-                html.H6(
+                html.P(
                     [
-                        "Materiale under ",
-                        html.A("Open Government License License 3",
-                               href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
-                               target="_blank"),
+                        # "Materiale under ",
+                        # html.A("Open Government License License 3",
+                        #        href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
+                        #        target="_blank"),
+                        # ":"
                     ],
                 ),
             ],
