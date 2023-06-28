@@ -19,7 +19,7 @@ section_intro = dbc.Card(
     [
         dbc.CardBody(
             [
-                html.H4("Er du i tvivl om bestøvning af æbletræer?", className="card-title"),
+                html.H1("Find bestøvere til æbletræ", className="card-title"),
                 html.P(
                     [
                         "Hvis du har et æbletræ i haven, skal det bestøves for at der kommer æbler. Det er ikke altid "
@@ -47,7 +47,14 @@ section_search = dbc.Card(
     [
         dbc.CardBody(
             [
-                dcc.Dropdown(id="input_Search", placeholder="Søg efter æble...", value="string", clearable=True),
+                html.H1("Søg efter æbletræ", className="card-title"),
+                dcc.Dropdown(id="input_Search",
+                             placeholder="Søg...",
+                             value="string",
+                             clearable=True,
+                             maxHeight=300,
+                             searchable=True,
+                             ),
                 html.Div(id="section_info", className="my-2")
             ],
         ),
@@ -75,7 +82,13 @@ section_credits = dbc.Card(
     [
         dbc.CardBody(
             [
-                html.H4("Henvisninger", className="card-title"),
+                html.H4("Kontakt & Henvisninger", className="card-title"),
+                html.P(
+                    [
+                        "Har du kommentarer eller rettelser, kontakt venligst ",
+                        dcc.Link("kontakt@bestøvere.dk", title='email', href='mailto:kontakt@bestøvere.dk',
+                                 target='_blank')
+                    ]),
                 html.P(
                     [
                         "Information og billeder på siden er hentet fra forskellige kilder. Information om æbler og "
@@ -182,4 +195,4 @@ def update_poliapples(target_apple_id):
 
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=True)

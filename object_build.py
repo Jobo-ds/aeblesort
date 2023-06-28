@@ -10,11 +10,12 @@ def build_card(img, name, latin_name, description):
             dbc.Row(
                 [
                     dbc.Col(
-                        dbc.CardImg(
-                            src=("assets/img/" + img + ".jpg"),
-                            className="img-fluid rounded-start",
+                        html.Div(
+                            html.Img(src="assets/img/" + img + ".jpg",
+                                     className="card-img-apple rounded-circle"),
+                            className="d-flex justify-content-center"
                         ),
-                        md=3, sm=3
+                        align="center", md=3, sm=3
                     ),
                     dbc.Col(
                         dbc.CardBody(
@@ -34,7 +35,7 @@ def build_card(img, name, latin_name, description):
                 align="start",
             )
         ],
-        className="mb-3",
+        className="mb-3 card-target",
     )
 
 
@@ -196,7 +197,14 @@ def getTargetAppleName(id):
 
 
 def build_pollination_cards(target_apple_name, id):
-    list_cards = [html.H4(f"Æblesorter der kan bestøve {target_apple_name}", className="w-100 card-title")]
+    headline = html.H4(f"Æblesorter, der kan bestøve {target_apple_name}"
+                       , className="w-100 card-title")
+    description = html.P("Bestøvningen af dit æbletræ sker når der kommer blomster på træet, og er afhænging af at "
+                         "bierne og andre insekter kan flyve mellem træet og bestøvningstræet. Derfor anbefales der "
+                         "ikke at være mere end 20-30 meter mellem træerne. Hos nogle planteskoler kan de anbefale "
+                         "sammensætninger af flere slags æbletræer som kan bestøve hinanden."
+                         , className="w-100 card-text")
+    list_cards = [headline, description]
     apples = db.get_apples(id)
     for index, row in apples.iterrows():
         list_cards.append((build_card_small(row)))

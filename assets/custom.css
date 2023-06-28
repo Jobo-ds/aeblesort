@@ -5,6 +5,7 @@
 .card-img-apple {
 width:35% !important;
 margin-top: 5px;
+margin-bottom: 5px;
 }
 }
 
@@ -14,6 +15,8 @@ margin-top: 5px;
 }
 .card-img-apple {
 width:90% !important;
+margin-top: 5px;
+margin-bottom: 5px;
 }
 }
 
@@ -25,5 +28,24 @@ background: #A0C49D;
 background-color: #F7FFE5;
 }
 
+.card-target {
+background-color: #E1ECC8;
+}
+
+h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--bs-heading-color);
+}
+
+h1, .h1 {
+  font-size: calc(1.1rem + 0.5vw);
+}
+
+/*
 .Select, .Select div, .Select input, .Select span {
-background-color: #E1ECC8}
+background-color: #E1ECC8;
+}
+*/
